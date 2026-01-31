@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Car Kiraya</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-car-side"></i>
+                <span class="logo-text">Car Kiraya</span>
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="cars.html" class="nav-link">Cars</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-auth" id="navAuth">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            
+            <div class="nav-profile" id="navProfile" style="display: none;">
+                <div class="profile-dropdown">
+                    <img src="https://ui-avatars.com/api/?name=User&background=ff5500&color=fff" alt="User" class="profile-avatar" id="navAvatar">
+                    <span class="profile-name" id="profileName">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="active"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="my-bookings.html"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up">My Profile</h1>
+            <p data-aos="fade-up" data-aos-delay="100">Manage your account settings</p>
+            <div class="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <span>Profile</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <section class="profile-page">
+        <div class="container">
+            <div class="profile-container">
+                <!-- Sidebar -->
+                <div class="profile-sidebar" data-aos="fade-right">
+                    <img src="https://ui-avatars.com/api/?name=User&background=ff5500&color=fff&size=120" alt="Profile" class="profile-avatar-large" id="profileAvatar">
+                    <h3 id="profileNameDisplay">User Name</h3>
+                    <p id="profileEmailDisplay">user@email.com</p>
+                    
+                    <div class="profile-menu">
+                        <a href="profile.html" class="active"><i class="fas fa-user"></i> Profile Settings</a>
+                        <a href="my-bookings.html"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="profile-content" data-aos="fade-left">
+                    <h2>Profile Settings</h2>
+                    
+                    <form id="profileForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profileNameInput">Full Name</label>
+                                <input type="text" id="profileNameInput" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profileEmailInput">Email Address</label>
+                                <input type="email" id="profileEmailInput" disabled>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profilePhoneInput">Phone Number</label>
+                                <input type="tel" id="profilePhoneInput">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profileCity">City</label>
+                                <select id="profileCity">
+                                    <option value="">Select City</option>
+                                    <option value="delhi">Delhi</option>
+                                    <option value="mumbai">Mumbai</option>
+                                    <option value="bangalore">Bangalore</option>
+                                    <option value="chennai">Chennai</option>
+                                    <option value="kolkata">Kolkata</option>
+                                    <option value="hyderabad">Hyderabad</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profileAddress">Address</label>
+                            <textarea id="profileAddress" rows="3" placeholder="Enter your address"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </form>
+                    
+                    <hr style="margin: 40px 0; border-color: var(--gray-light);">
+                    
+                    <h2>Change Password</h2>
+                    
+                    <form id="passwordForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <div class="password-toggle">
+                                    <input type="password" id="currentPassword" placeholder="Enter current password">
+                                    <i class="fas fa-eye" onclick="togglePassword('currentPassword')"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <div class="password-toggle">
+                                    <input type="password" id="newPassword" placeholder="Enter new password">
+                                    <i class="fas fa-eye" onclick="togglePassword('newPassword')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-key"></i> Update Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>2025 Car Kiraya. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

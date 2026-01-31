@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Kiraya - Premium Car Rental Service</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-car-side"></i>
+                <span class="logo-text">Car Kiraya</span>
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="pages/cars.html" class="nav-link">Cars</a>
+                <a href="pages/about.html" class="nav-link">About</a>
+                <a href="pages/contact.html" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-auth" id="navAuth">
+                <a href="pages/login.html" class="btn btn-outline">Login</a>
+                <a href="pages/signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            
+            <!-- User Profile (Hidden by default, shown when logged in) -->
+            <div class="nav-profile" id="navProfile" style="display: none;">
+                <div class="profile-dropdown">
+                    <img src="https://ui-avatars.com/api/?name=User&background=ff5500&color=fff" alt="User" class="profile-avatar" id="navAvatar">
+                    <span class="profile-name" id="profileName">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="pages/profile.html"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="pages/my-bookings.html"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <!-- Background image: bg.jpg -->
+    <section class="hero" id="hero" style="background-image: url('images/bg.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Find Your Perfect <span>Ride</span></h1>
+            <p>Premium car rental service with the best prices and wide selection of vehicles</p>
+            
+            <!-- Search Form -->
+            <div class="search-box" data-aos="fade-up" data-aos-delay="200">
+                <form id="searchForm">
+                    <div class="search-item">
+                        <label><i class="fas fa-map-marker-alt"></i> Pick-up Location</label>
+                        <select id="pickupLocation" required>
+                            <option value="">Select Location</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="mumbai">Mumbai</option>
+                            <option value="bangalore">Bangalore</option>
+                            <option value="chennai">Chennai</option>
+                            <option value="kolkata">Kolkata</option>
+                            <option value="hyderabad">Hyderabad</option>
+                            <option value="pune">Pune</option>
+                            <option value="jaipur">Jaipur</option>
+                        </select>
+                    </div>
+                    
+                    <div class="search-item">
+                        <label><i class="fas fa-calendar-alt"></i> Pick-up Date</label>
+                        <input type="date" id="pickupDate" required>
+                    </div>
+                    
+                    <div class="search-item">
+                        <label><i class="fas fa-clock"></i> Pick-up Time</label>
+                        <input type="time" id="pickupTime" required>
+                    </div>
+                    
+                    <div class="search-item">
+                        <label><i class="fas fa-calendar-alt"></i> Return Date</label>
+                        <input type="date" id="returnDate" required>
+                    </div>
+                    
+                    <div class="search-item">
+                        <label><i class="fas fa-clock"></i> Return Time</label>
+                        <input type="time" id="returnTime" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary search-btn">
+                        <i class="fas fa-search"></i> Search Cars
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Cars Available</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Locations</p>
+            </div>
+            <div class="stat-item">
+                <h3>10K+</h3>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars Section -->
+    <section class="section featured-cars">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Fleet</span>
+                <h2>Featured <span>Cars</span></h2>
+                <p>Choose from our wide range of premium vehicles</p>
+            </div>
+            
+            <div class="cars-grid">
+                <!-- Car Card 1 - Sedan -->
+                <div class="car-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="car-badge">Popular</div>
+                    <div class="car-image">
+                        <!-- Car Image: Sedan.png -->
+                        <img src="images/sedan.png" alt="Sedan">
+                    </div>
+                    <div class="car-info">
+                        <h3>Premium Sedan</h3>
+                        <div class="car-features">
+                            <span><i class="fas fa-user"></i> 5 Seats</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                            <span><i class="fas fa-snowflake"></i> AC</span>
+                        </div>
+                        <div class="car-price">
+                            <span class="price">₹2,500</span>
+                            <span class="per-day">/day</span>
+                        </div>
+                        <a href="pages/car-details.html?car=sedan" class="btn btn-primary">Rent Now</a>
+                    </div>
+                </div>
+                
+                <!-- Car Card 2 - SUV -->
+                <div class="car-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="car-badge hot">Hot Deal</div>
+                    <div class="car-image">
+                        <!-- Car Image: SUV.png -->
+                        <img src="images/suv.png" alt="SUV">
+                    </div>
+                    <div class="car-info">
+                        <h3>Luxury SUV</h3>
+                        <div class="car-features">
+                            <span><i class="fas fa-user"></i> 7 Seats</span>
+                            <span><i class="fas fa-cog"></i> Auto</span>
+                            <span><i class="fas fa-snowflake"></i> AC</span>
+                        </div>
+                        <div class="car-price">
+                            <span class="price">₹4,500</span>
+                            <span class="per-day">/day</span>
+                        </div>
+                        <a href="pages/car-details.html?car=suv" class="btn btn-primary">Rent Now</a>
+                    </div>
+                </div>
+                
+                <!-- Car Card 3 - Coupe -->
+                <div class="car-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="car-image">
+                        <!-- Car Image: coupe.png -->
+                        <img src="images/coupe.png" alt="Coupe">
+                    </div>
+                    <div class="car-info">
+                        <h3>Sports Coupe</h3>
+                        <div class="car-features">
+                            <span><i class="fas fa-user"></i> 2 Seats</span>
+                            <span><i class="fas fa-cog"></i> Manual</span>
+                            <span><i class="fas fa-snowflake"></i> AC</span>
+                        </div>
+                        <div class="car-price">
+                            <span class="price">₹5,500</span>
+                            <span class="per-day">/day</span>
+                        </div>
+                        <a href="pages/car-details.html?car=coupe" class="btn btn-primary">Rent Now</a>
+                    </div>
+                </div>
+                
+                <!-- Car Card 4 - Hatchback -->
+                <div class="car-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="car-badge budget">Budget</div>
+                    <div class="car-image">
+                        <!-- Car Image: hatchback.png -->
+                        <img src="images/hatchback.png" alt="Hatchback">
+                    </div>
+                    <div class="car-info">
+                        <h3>Compact Hatchback</h3>
+                        <div class="car-features">
+                            <span><i class="fas fa-user"></i> 5 Seats</span>
+                            <span><i class="fas fa-cog"></i> Manual</span>
+                            <span><i class="fas fa-snowflake"></i> AC</span>
+                        </div>
+                        <div class="car-price">
+                            <span class="price">₹1,500</span>
+                            <span class="per-day">/day</span>
+                        </div>
+                        <a href="pages/car-details.html?car=hatchback" class="btn btn-primary">Rent Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="view-all" data-aos="fade-up">
+                <a href="pages/cars.html" class="btn btn-outline-dark">View All Cars <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section why-us">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Why Us</span>
+                <h2>Why Choose <span>Car Kiraya</span></h2>
+                <p>We provide the best car rental experience</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Best Prices</h3>
+                    <p>We offer competitive prices with no hidden charges. Get the best deals on premium cars.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Wide Selection</h3>
+                    <p>Choose from 500+ vehicles ranging from economy to luxury cars for every occasion.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is available round the clock to assist you.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Fully Insured</h3>
+                    <p>All our vehicles are fully insured for your peace of mind during the journey.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Multiple Locations</h3>
+                    <p>Pick up and drop off at any of our 50+ locations across the country.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Easy Booking</h3>
+                    <p>Book your car in just a few clicks with our simple and fast booking process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Categories Section -->
+    <section class="section categories">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Categories</span>
+                <h2>Browse by <span>Category</span></h2>
+                <p>Find the perfect car for your needs</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="images/sedan.png" alt="Sedan">
+                    <div class="category-overlay">
+                        <h3>Sedan</h3>
+                        <p>15 Cars Available</p>
+                        <a href="pages/cars.html?category=sedan" class="btn btn-sm">View Cars</a>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="images/suv.png" alt="SUV">
+                    <div class="category-overlay">
+                        <h3>SUV</h3>
+                        <p>20 Cars Available</p>
+                        <a href="pages/cars.html?category=suv" class="btn btn-sm">View Cars</a>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="images/hatchback.png" alt="Hatchback">
+                    <div class="category-overlay">
+                        <h3>Hatchback</h3>
+                        <p>25 Cars Available</p>
+                        <a href="pages/cars.html?category=hatchback" class="btn btn-sm">View Cars</a>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="images/convertable.png" alt="Convertible">
+                    <div class="category-overlay">
+                        <h3>Convertible</h3>
+                        <p>8 Cars Available</p>
+                        <a href="pages/cars.html?category=convertible" class="btn btn-sm">View Cars</a>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-aos="zoom-in" data-aos-delay="500">
+                    <img src="images/coupe.png" alt="Coupe">
+                    <div class="category-overlay">
+                        <h3>Coupe</h3>
+                        <p>10 Cars Available</p>
+                        <a href="pages/cars.html?category=coupe" class="btn btn-sm">View Cars</a>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-aos="zoom-in" data-aos-delay="600">
+                    <img src="images/wagon.png" alt="Wagon">
+                    <div class="category-overlay">
+                        <h3>Wagon</h3>
+                        <p>12 Cars Available</p>
+                        <a href="pages/cars.html?category=wagon" class="btn btn-sm">View Cars</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Process</span>
+                <h2>How It <span>Works</span></h2>
+                <p>Rent a car in 4 easy steps</p>
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-card" data-aos="fade-right" data-aos-delay="100">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Search</h3>
+                    <p>Enter your location, date, and time to find available cars</p>
+                </div>
+                
+                <div class="step-connector" data-aos="fade-up"></div>
+                
+                <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Choose</h3>
+                    <p>Select from our wide range of vehicles that suit your needs</p>
+                </div>
+                
+                <div class="step-connector" data-aos="fade-up"></div>
+                
+                <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Book</h3>
+                    <p>Complete your booking with secure online payment</p>
+                </div>
+                
+                <div class="step-connector" data-aos="fade-up"></div>
+                
+                <div class="step-card" data-aos="fade-left" data-aos-delay="400">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3>Drive</h3>
+                    <p>Pick up your car and enjoy your journey</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Testimonials</span>
+                <h2>What Our <span>Customers Say</span></h2>
+                <p>Real experiences from real customers</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Amazing service! The car was in perfect condition and the booking process was so smooth. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://ui-avatars.com/api/?name=Rahul+Sharma&background=ff5500&color=fff" alt="Rahul Sharma">
+                        <div>
+                            <h4>Rahul Sharma</h4>
+                            <span>Delhi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Best prices in the market! I've been using Car Kiraya for all my trips and never been disappointed. Great variety of cars."</p>
+                    <div class="testimonial-author">
+                        <img src="https://ui-avatars.com/api/?name=Priya+Patel&background=ff5500&color=fff" alt="Priya Patel">
+                        <div>
+                            <h4>Priya Patel</h4>
+                            <span>Mumbai</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"The SUV I rented was perfect for our family trip to Goa. Clean, well-maintained, and excellent customer support!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://ui-avatars.com/api/?name=Amit+Kumar&background=ff5500&color=fff" alt="Amit Kumar">
+                        <div>
+                            <h4>Amit Kumar</h4>
+                            <span>Bangalore</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" style="background-image: url('images/bg.jpg');">
+        <div class="container">
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Ready to Hit the Road?</h2>
+                <p>Download our app and get 500 off on your first booking!</p>
+                <div class="cta-buttons">
+                    <a href="#" class="app-btn">
+                        <i class="fab fa-apple"></i>
+                        <span>
+                            <small>Download on the</small>
+                            App Store
+                        </span>
+                    </a>
+                    <a href="#" class="app-btn">
+                        <i class="fab fa-google-play"></i>
+                        <span>
+                            <small>Get it on</small>
+                            Google Play
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" data-aos="fade-up">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-car-side"></i>
+                        <span>Car Kiraya</span>
+                    </a>
+                    <p>Your trusted partner for premium car rentals. Quality vehicles, competitive prices, and exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="100">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pages/cars.html">Our Cars</a></li>
+                        <li><a href="pages/about.html">About Us</a></li>
+                        <li><a href="pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Car Categories</h4>
+                    <ul>
+                        <li><a href="pages/cars.html?category=sedan">Sedan</a></li>
+                        <li><a href="pages/cars.html?category=suv">SUV</a></li>
+                        <li><a href="pages/cars.html?category=hatchback">Hatchback</a></li>
+                        <li><a href="pages/cars.html?category=convertible">Convertible</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col" data-aos="fade-up" data-aos-delay="300">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Main Street, Delhi, India</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> info@carkiraya.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>2025 Car Kiraya. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

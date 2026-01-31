@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details - Car Kiraya</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-car-side"></i>
+                <span class="logo-text">Car Kiraya</span>
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="cars.html" class="nav-link active">Cars</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-auth" id="navAuth">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+            </div>
+            
+            <div class="nav-profile" id="navProfile" style="display: none;">
+                <div class="profile-dropdown">
+                    <img src="https://ui-avatars.com/api/?name=User&background=ff5500&color=fff" alt="User" class="profile-avatar" id="navAvatar">
+                    <span class="profile-name" id="profileName">User</span>
+                    <i class="fas fa-chevron-down"></i>
+                    <div class="dropdown-menu">
+                        <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                        <a href="my-bookings.html"><i class="fas fa-calendar-check"></i> My Bookings</a>
+                        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 data-aos="fade-up" id="carNameHeader">Car Details</h1>
+            <div class="breadcrumb" data-aos="fade-up" data-aos-delay="100">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <a href="cars.html">Cars</a>
+                <span>/</span>
+                <span id="carName">Details</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Car Details Section -->
+    <section class="car-details-page">
+        <div class="container">
+            <div class="car-details-container">
+                <!-- Left: Car Gallery & Info -->
+                <div class="car-details-left">
+                    <div class="car-gallery" data-aos="fade-right">
+                        <div class="main-image">
+                            <!-- Car Image will be loaded here -->
+                            <img id="carImage" src="" alt="Car">
+                        </div>
+                    </div>
+                    
+                    <div class="car-details-info" data-aos="fade-up">
+                        <div class="car-rating" id="carRating">
+                            <i class="fas fa-star"></i> 4.8 (124 reviews)
+                        </div>
+                        
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <i class="fas fa-users"></i>
+                                <div>
+                                    <span>Seats</span>
+                                    <strong id="carSeats">5 Seats</strong>
+                                </div>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-cog"></i>
+                                <div>
+                                    <span>Transmission</span>
+                                    <strong id="carTransmission">Auto</strong>
+                                </div>
+                            </div>
+                            <div class="spec-item">
+                                <i class="fas fa-gas-pump"></i>
+                                <div>
+                                    <span>Fuel Type</span>
+                                    <strong id="carFuel">Petrol</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="car-description">
+                            <h3>Description</h3>
+                            <p id="carDescription">Experience luxury and comfort with this premium vehicle...</p>
+                        </div>
+                        
+                        <div class="car-features-list">
+                            <h3>Features</h3>
+                            <div class="features-tags" id="carFeatures">
+                                <!-- Features will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right: Booking Card -->
+                <div class="booking-card" data-aos="fade-left">
+                    <h3>Book This Car</h3>
+                    <div class="booking-price" id="carPrice">₹2,500 <span>/day</span></div>
+                    
+                    <form class="booking-form">
+                        <div class="form-group">
+                            <label>Pick-up Location</label>
+                            <select id="bookingLocation" required onchange="calculateTotal()">
+                                <option value="">Select Location</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="bangalore">Bangalore</option>
+                                <option value="chennai">Chennai</option>
+                                <option value="kolkata">Kolkata</option>
+                                <option value="hyderabad">Hyderabad</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Pick-up Date</label>
+                            <input type="date" id="bookingPickupDate" required onchange="calculateTotal()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Return Date</label>
+                            <input type="date" id="bookingReturnDate" required onchange="calculateTotal()">
+                        </div>
+                        
+                        <div class="booking-summary">
+                            <div class="summary-item">
+                                <span>Rental Days</span>
+                                <span id="rentalDays">0 days</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Subtotal</span>
+                                <span id="subtotal">₹0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Tax (18%)</span>
+                                <span id="taxAmount">₹0</span>
+                            </div>
+                            <div class="summary-item total">
+                                <span>Total</span>
+                                <span id="totalAmount">₹0</span>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" onclick="openPaymentModal()">
+                            <i class="fas fa-credit-card"></i> Book Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-lock"></i> Secure Payment</h3>
+                <div class="modal-close" onclick="closePaymentModal()">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="payment-methods">
+                    <label class="payment-method active" onclick="selectPaymentMethod('upi')">
+                        <input type="radio" name="payment" value="upi" checked>
+                        <i class="fas fa-qrcode"></i>
+                        <span>UPI / QR Code</span>
+                    </label>
+                    <label class="payment-method" onclick="selectPaymentMethod('card')">
+                        <input type="radio" name="payment" value="card">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Credit / Debit Card</span>
+                    </label>
+                    <label class="payment-method" onclick="selectPaymentMethod('netbanking')">
+                        <input type="radio" name="payment" value="netbanking">
+                        <i class="fas fa-university"></i>
+                        <span>Net Banking</span>
+                    </label>
+                </div>
+                
+                <div class="qr-code-section">
+                    <p>Scan QR code to pay</p>
+                    <!-- QR Code Image -->
+                    <img src="../images/qr-code.jpg" alt="Payment QR Code">
+                    <p>Or pay to UPI ID: <strong>carkiraya@upi</strong></p>
+                    <div class="payment-amount" id="paymentAmount">₹0</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-dark" onclick="closePaymentModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="confirmPayment()">
+                    <i class="fas fa-check"></i> Confirm Payment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="../index.html" class="footer-logo">
+                        <i class="fas fa-car-side"></i>
+                        <span>Car Kiraya</span>
+                    </a>
+                    <p>Your trusted partner for premium car rentals.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="cars.html">Our Cars</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> info@carkiraya.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>2025 Car Kiraya. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
